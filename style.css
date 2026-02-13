@@ -1,0 +1,180 @@
+:root {
+    --lila-oscuro: #4a148c;
+    --lila-principal: #8e24aa;
+    --lila-suave: #f9f4fa;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--lila-suave);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--lila-oscuro);
+    overflow-x: hidden;
+}
+
+.font-cursive { font-family: 'Great Vibes', cursive; }
+
+/* Pantalla de Entrada */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.6s ease;
+}
+
+.btn-start {
+    background: var(--lila-principal);
+    color: white;
+    border: none;
+    padding: 20px 50px;
+    border-radius: 50px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(142, 36, 170, 0.3);
+}
+
+/* MARIPOSAS ANIMADAS */
+.mariposa-vuelo {
+    position: fixed; 
+    width: 80px; /* Ajusta según el tamaño de tu GIF */
+    height: 80px;
+    /* Cambia 'mariposa.gif' por el nombre exacto de tu archivo en assets */
+    background: url('assets/mariposa.gif') no-repeat;
+    background-size: contain; 
+    bottom: -100px;
+    z-index: 5; 
+    opacity: 0.9;
+    /* Eliminamos la rotación, ahora solo flota y sube */
+    animation: flotarSubir linear forwards;
+    pointer-events: none;
+}
+
+@keyframes flotarSubir {
+    0% { 
+        transform: translateY(0) translateX(0); 
+        opacity: 0; 
+    }
+    10% { 
+        opacity: 0.9; 
+    }
+    /* El efecto de bamboleo lateral (flotar) */
+    25% { transform: translateY(-30vh) translateX(20px); }
+    50% { transform: translateY(-60vh) translateX(-20px); }
+    75% { transform: translateY(-90vh) translateX(20px); }
+    100% { 
+        transform: translateY(-120vh) translateX(0); 
+        opacity: 0; 
+    }
+}
+
+/* Contenedor Tipo Celular/PDF */
+.invitation-wrapper {
+    max-width: 500px;
+    margin: 0 auto; /* Corregido: '20 auto' no es válido, debe ser '0 auto' */
+    background: #ffffff;
+    box-shadow: 0 0 40px rgba(0,0,0,0.05);
+}
+
+.section {
+    min-height: 100vh;
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* PORTADA - CORRECCIÓN DE TEXTO MONTADO */
+.pdf-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.big-subtitle {
+    font-size: 4rem;
+    font-weight: 300;
+    margin: 0;
+    line-height: 2; /* Aumentado para dar espacio */
+    letter-spacing: 2px;
+}
+
+.main-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 8rem; /* Ajustado levemente para mejorar legibilidad en web */
+    color: var(--lila-principal);
+    margin: 25px 0; /* Espacio vertical para que no se monte con lo de arriba/abajo */
+    line-height: 1; /* Asegura que la caligrafía tenga su espacio */
+    text-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+}
+
+.parents-text {
+    font-size: 1.6rem;
+    margin-top: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* DATOS Y BOTONES */
+.date-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border-top: 3px solid var(--lila-principal);
+    border-bottom: 3px solid var(--lila-principal);
+    margin: 30px 0;
+    padding: 15px 0;
+    width: 100%;
+}
+
+.date-number { 
+    font-size: 6rem; 
+    font-weight: 700;
+    line-height: 1;
+}
+
+.date-side { font-size: 1.5rem; }
+
+.btn-pdf {
+    background: var(--lila-principal);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 70px;
+    border-radius: 40px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+    margin-top: 10px;
+}
+
+.btn-pdf:active { transform: scale(0.95); }
+
+/* CONTADOR */
+.timer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cambiado a 3 para evitar que se apriete */
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.t-unit span { font-size: 2.2rem; font-weight: bold; display: block; line-height: 1; }
+.t-unit small { font-size: 0.7rem; color: var(--lila-principal); font-weight: bold; }
+
+.label-purple {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    display: block;
+}

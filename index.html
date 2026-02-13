@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower Adelyne</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="overlay">
+        <div class="overlay-content">
+            <h1 class="font-cursive" style="font-size: 5em; color: #8e24aa;">Baby Shower</h1>
+            <p>De nuestra hija Adelyne</p>
+            <button onclick="abrirInvitacion()" class="btn-start">📩 ABRIR INVITACIÓN</button>
+        </div>
+    </div>
+
+    <audio id="musica-bebe" loop>
+        <source src="assets/baby.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="mariposas-container"></div>
+
+    <main class="invitation-wrapper">
+        
+        <section class="section">
+            <div class="pdf-header" data-aos="zoom-in">
+                <p class="big-subtitle">BABY</p>
+                <p class="big-subtitle" style="margin-top: -35px;">Shower</p>
+                <h1 class="main-name">Adelyne</h1>
+                <p class="parents-text">Emily y Cristhian</p>
+            </div>
+        </section>
+
+        <section class="section" data-aos="fade-up">
+            <div class="glass-card">
+                <p class="intro-text">Te invitamos al Baby Shower de nuestra hija el día:</p>
+                
+                <div class="date-row">
+                    <div class="date-side">SÁBADO</div>
+                    <div class="date-number">04</div>
+                    <div class="date-side">ABRIL</div>
+                </div>
+                <p class="time-text">A LAS 1:30 P.M.</p>
+
+                <div class="action-box">
+                    <p class="label-purple">DIRECCIÓN DEL EVENTO</p>
+                    <a href="https://www.google.com/maps/place/Parque+Campestre+Etapa+14/@4.5810182,-74.2369173,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3f75702e7ef455:0xd7c0b9a4047d19c8!8m2!3d4.5810182!4d-74.2320464!16s%2Fg%2F11f03zmgfg?entry=ttu&g_ep=EgoyMDI2MDIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-pdf">CLICK</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" data-aos="fade-up">
+            <div class="glass-card">
+                <h3 class="font-cursive" style="font-size: 4em; margin-bottom: 20px;">¿Cuánto falta?</h3>
+                
+                <div id="countdown" class="timer-grid">
+                    <div class="t-unit"><span id="days">00</span><small>DÍAS</small></div>
+                    <div class="t-unit"><span id="hours">00</span><small>HORAS</small></div>
+                    <div class="t-unit"><span id="mins">00</span><small>MINS</small></div>
+                    <div class="t-unit"><span id="secs">00</span><small>SEG</small></div>
+                </div>
+
+                <div class="button-group">
+                    <p class="label-purple">Lista de regalos</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScdTSniM7xiUboCtI39eqlH9wlfc6fdRFL6aJQxf-LXy-UY0w/viewform" target="_blank" class="btn-pdf">CLICK</a>
+                    
+                    <p class="label-purple" style="margin-top: 40px;">No olvides confirmar tu asistencia</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdb2igQYaiqrjoHKbn3LUXoNCz5vn9eiX-cBwVypz9tb_Atkw/viewform" target="_blank" class="btn-pdf">CLICK</a>
+                </div>
+
+                <h2 class="font-cursive" style="font-size: 4em; margin-top: 50px; color: #8e24aa;">¡Te esperamos!</h2>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        function abrirInvitacion() {
+            const audio = document.getElementById('musica-bebe');
+            const overlay = document.getElementById('overlay');
+            
+            if (audio) {
+                audio.play().catch(e => console.log("Audio esperando interacción"));
+            }
+
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 600);
+        }
+
+        // Generador de mariposas (Usa tu imagen mariposa.png en assets)
+        function crearMariposa() {
+            const container = document.getElementById('mariposas-container');
+            const m = document.createElement('div');
+            m.className = 'mariposa-vuelo';
+            
+            // Posición y velocidad aleatoria
+            m.style.left = Math.random() * 100 + 'vw';
+            m.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            
+            container.appendChild(m);
+            setTimeout(() => m.remove(), 8000);
+        }
+        setInterval(crearMariposa, 1000);
+
+        // Lógica del contador
+        const fechaEvento = new Date('April 4, 2026 13:30:00').getTime();
+        setInterval(() => {
+            const ahora = new Date().getTime();
+            const d = fechaEvento - ahora;
+            document.getElementById('days').innerText = Math.floor(d / (1000*60*60*24));
+            document.getElementById('hours').innerText = Math.floor((d % (1000*60*60*24)) / (1000*60*60));
+            document.getElementById('mins').innerText = Math.floor((d % (1000*60*60)) / (1000*60));
+            document.getElementById('secs').innerText = Math.floor((d % (1000*60)) / 1000);
+        }, 1000);
+    </script>
+</body>
+</html>
